@@ -4,12 +4,18 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.shape.Circle;
+
 import org.jfree.chart.labels.XYItemLabelGenerator;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 public class ScatterPlotWithLabels extends JFrame {
 
@@ -44,8 +50,20 @@ public class ScatterPlotWithLabels extends JFrame {
                 false                              // No URLs
         );
 
+        chart.setBackgroundPaint(Color.WHITE);
+
         // Customize the plot to add labels to each point
         XYPlot plot = chart.getXYPlot();
+
+        plot.setBackgroundPaint(Color.WHITE);
+        plot.setDomainGridlinePaint(Color.LIGHT_GRAY);  // X-axis gridlines
+        plot.setRangeGridlinePaint(Color.LIGHT_GRAY);   // Y-axis gridlines
+
+       // NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();  // X-axis
+       // domainAxis.setLabelInsets(new RectangleInsets(10, 10, 10, 10));  // Add padding       TODO
+
+       // NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();  // Y-axis
+       // rangeAxis.setLabelInsets(new RectangleInsets(10, 10, 10, 10));  // Add padding
 
         // Create a renderer to customize the plot
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
@@ -54,8 +72,10 @@ public class ScatterPlotWithLabels extends JFrame {
         renderer.setDefaultItemLabelsVisible(true);  // Enable item labels
 
         for(int i = 0; i < countries.length; i ++){
-            renderer.setSeriesShape(i, new Rectangle(3, 3));
-            renderer.setSeriesPaint(i, Color.RED);
+            renderer.setSeriesShape(i, new Rectangle(10, 10));
+            renderer.setSeriesShape(i, new Ellipse2D.Double(0, 0, 5, 5));
+
+            renderer.setSeriesPaint(i, Color.BLUE);
         }
 
      /*   renderer.setSeriesShape(0, new Rectangle(3, 3));

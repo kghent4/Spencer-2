@@ -8,10 +8,6 @@ import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.shape.Circle;
-
 import org.jfree.chart.labels.XYItemLabelGenerator;
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +15,7 @@ import java.awt.geom.Ellipse2D;
 
 public class ScatterPlotWithLabels extends JFrame {
 
-    String[] countries = {"Brazil",
+    String[] dataLabels = {"Brazil",
                         "Turkey",
                         "India",
                         "Saudi Arabia",
@@ -28,8 +24,8 @@ public class ScatterPlotWithLabels extends JFrame {
                         "Malaysia",
                         "South Korea"};
 
-    int[] loneliness= {50, 46, 43, 43, 41, 40, 39, 38};
-    double[] marriageRate= {6.2, 5.9, 0, 0, 3.2, 0, 5.9, 3.7};
+    int[] xVals= {50, 46, 43, 43, 41, 40, 39, 38};
+    double[] yVals= {6.2, 5.9, 0, 0, 3.2, 0, 5.9, 3.7};
 
 
     public ScatterPlotWithLabels(String title) {
@@ -71,7 +67,7 @@ public class ScatterPlotWithLabels extends JFrame {
        // renderer.setSeriesShapesVisible(0, true); // Enable shapes for each point
         renderer.setDefaultItemLabelsVisible(true);  // Enable item labels
 
-        for(int i = 0; i < countries.length; i ++){
+        for(int i = 0; i < dataLabels.length; i ++){
             renderer.setSeriesShape(i, new Rectangle(10, 10));
             renderer.setSeriesShape(i, new Ellipse2D.Double(0, 0, 5, 5));
 
@@ -105,9 +101,9 @@ public class ScatterPlotWithLabels extends JFrame {
 
         XYSeriesCollection dataset = new XYSeriesCollection();
         
-        for(int i = 0; i < countries.length; i++){
-            XYSeries s = new XYSeries(countries[i]);
-            s.add(loneliness[i], marriageRate[i]);
+        for(int i = 0; i < dataLabels.length; i++){
+            XYSeries s = new XYSeries(dataLabels[i]);
+            s.add(xVals[i], yVals[i]);
             dataset.addSeries(s);
         }
 
